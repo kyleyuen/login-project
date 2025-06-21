@@ -1,0 +1,13 @@
+# Node
+node_modules/
+.env
+dist/
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Mac system files
+.DS_Store
