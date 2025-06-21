@@ -1,10 +1,17 @@
-# models.py
+from fastapi import FastAPI
+from auth import router as auth_router
+from fastapi.middleware.cors import CORSMiddleware
 
-from pydantic import BaseModel
+app = FastAPI()
 
-class User(BaseModel):
-    email: str
-    password: str
+# Enable CORS so frontend can talk to backend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # In production, replace * with your frontend URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-class UserInDB(User):
-    hashed_password: str
+# Mount the auth router
+app.include_router(auth_router)
